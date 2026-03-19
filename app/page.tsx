@@ -1,65 +1,146 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Sparky — Under Maintenance",
+  description:
+    "Sparky is currently undergoing scheduled maintenance. We'll be back shortly!",
+};
+
+export default function MaintenancePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main
+      style={{
+        position: "relative",
+        width: "100vw",
+        height: "100dvh",
+        overflow: "hidden",
+        background: "#000",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* ── Full-screen splash background ── */}
+      <Image
+        src="/splashscreen.png"
+        alt="Sparky splash background"
+        fill
+        priority
+        style={{ objectFit: "cover", opacity: 0.55 }}
+      />
+
+      {/* ── Overlay card ── */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+          padding: "40px 32px",
+          borderRadius: "24px",
+          background: "rgba(0, 0, 0, 0.55)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+          maxWidth: "360px",
+          width: "90%",
+          textAlign: "center",
+        }}
+      >
+        {/* Pulsing icon */}
+        <span
+          style={{
+            fontSize: "52px",
+            animation: "pulse 2s ease-in-out infinite",
+          }}
+        >
+          ⚙️
+        </span>
+
+        <h1
+          style={{
+            margin: 0,
+            fontFamily:
+              "'Inter', 'SF Pro Display', -apple-system, sans-serif",
+            fontWeight: 800,
+            fontSize: "26px",
+            letterSpacing: "-0.5px",
+            color: "#ffffff",
+            lineHeight: 1.2,
+          }}
+        >
+          Sparky is Getting
+          <br />
+          <span style={{ color: "#f5a623" }}>an Upgrade ✨</span>
+        </h1>
+
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "'Inter', -apple-system, sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            color: "rgba(255,255,255,0.72)",
+            lineHeight: 1.6,
+          }}
+        >
+          We're working hard to bring you exciting new features and
+          improvements. The game will be back online very soon — hang tight!
+        </p>
+
+        {/* Animated progress dots */}
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            paddingTop: "4px",
+          }}
+        >
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#f5a623",
+                display: "inline-block",
+                animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite`,
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
-    </div>
+
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "'Inter', -apple-system, sans-serif",
+            fontWeight: 600,
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.40)",
+            letterSpacing: "0.5px",
+            textTransform: "uppercase",
+          }}
+        >
+          Follow us on Telegram for updates
+        </p>
+      </div>
+
+      {/* ── Keyframe animations (inline for zero-dependency) ── */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50%       { transform: scale(1.12); }
+        }
+        @keyframes bounce {
+          0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+          40%            { transform: translateY(-6px); opacity: 1; }
+        }
+      `}</style>
+    </main>
   );
 }
